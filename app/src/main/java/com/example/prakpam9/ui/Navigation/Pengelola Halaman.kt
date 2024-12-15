@@ -46,3 +46,32 @@ fun PengelolaHalaman(
             )
         }
 
+        // Halaman Detail
+        composable(
+            route = DestinasiDetail.routesWithArg,
+            arguments = listOf(
+                navArgument(DestinasiDetail.NIM) {
+                    type = NavType.StringType
+                }
+            )
+        ) { backStackEntry ->
+            val nim = backStackEntry.arguments?.getString(DestinasiDetail.NIM)
+            if (nim != null) {
+                DetailMhsView(
+                    onBack = {
+                        navController.popBackStack()
+                    },
+                    onEditClick = {
+                        navController.navigate("${DestinasiUpdate.route}/$nim")
+                    },
+                    modifier = modifier,
+                    onDeleteClick = {
+                        navController.popBackStack()
+                    }
+                )
+            } else {
+                // Tangani kasus di mana NIM null
+                println("Error: NIM tidak ditemukan.")
+            }
+        }
+
