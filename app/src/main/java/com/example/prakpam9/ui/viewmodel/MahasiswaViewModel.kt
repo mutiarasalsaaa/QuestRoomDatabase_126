@@ -86,4 +86,24 @@ data class MhsUIState(
                  alamat == null && kelas == null && angkatan == null
      }
  }
-    
+    //Menyimpan input form ke dalam entity
+    fun MahasiswaEvent.toMahasiswaEntity(): Mahasiswa = Mahasiswa(
+        nim = nim,
+        nama = nama,
+        jenisKelamin = jenisKelamin,
+        alamat = alamat,
+        kelas = kelas,
+        angkatan = angkatan,
+    )
+    //data class variabel yg menyimpan data input form
+    data class MahasiswaEvent(
+        val nim: String = "",
+        val nama : String = "",
+        val jenisKelamin : String = "",
+        val alamat: String = "",
+        val kelas: String = "",
+        val angkatan: String = "",
+
+    )
+
+
