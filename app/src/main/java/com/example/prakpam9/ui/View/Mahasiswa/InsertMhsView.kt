@@ -52,4 +52,12 @@ fun InsertMhsView(
     val snackbarHostState = remember { SnackbarHostState() } //snackbar state
     val coroutineScope = rememberCoroutineScope()
 
-   
+    //observasi perubahan snackbarmassage
+    LaunchedEffect(uiState.snackBarMessage) {
+        uiState.snackBarMessage?.let { message ->
+            coroutineScope.launch {
+                snackbarHostState.showSnackbar(message) //tampilansnackbar
+                viewModel.resetSnackBarMessage()
+            }
+        }
+    }
